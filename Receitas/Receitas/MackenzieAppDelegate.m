@@ -11,9 +11,20 @@
 
 @implementation MackenzieAppDelegate
 
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    ReceitaViewController *viewController = [[ReceitaViewController alloc]
+    
+    NSString *caminho = [NSTemporaryDirectory( )
+                        stringByAppendingPathComponent:@"MeuArquivo. t xt " ] ;
+    NSArray *nomes = @[@"Paz" , @"Amor" ] ;
+    BOOL resultado = [nomes writeToFile:caminho atomically :YES] ;
+    NSArray *leitura = [ [NSArray alloc ] initWithContentsOfFile :
+                        caminho] ;
+    if ([leitura count] != [nomes count ] ) NSLog(@"Falha de leitu ra") ;
+    if (! resultado ) NSLog(@"Falha de escrita");
+    
+        ReceitaViewController *viewController = [[ReceitaViewController alloc]
                                             initWithNibName:nil
                                             bundle:nil];
     
